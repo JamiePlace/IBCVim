@@ -12,9 +12,8 @@ vim.keymap.set("n", "<leader>gp", function()
     prompt = string.lower(prompt)
 
     if prompt == 'y' then
-        echo('Pushing!')
         vim.cmd('Git push')
     else
-        echo('Not Pushing!')
+        print('Not Pushing!')
     end
 end)
