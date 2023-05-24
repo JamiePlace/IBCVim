@@ -25,7 +25,7 @@ vim.keymap.set('v', '<C-h>', function()
     vim.api.nvim_win_set_cursor(0, { math.min(pos[1] + 1, last_line), pos[2] })
 
 end)
-vim.keymap.set('n', '<C-n>', function()
+vim.keymap.set('n', '<leader>pp', function()
     require('iron.core').send(nil, string.char(13))
 end)
 -- iron also has a list of commands, see :h iron-commands for all available commands

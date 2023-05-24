@@ -1,1 +1,5 @@
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+vim.keymap.set("n", "<leader>gs", "<cmd>Git status<cr>")
+vim.keymap.set("n", "<leader>ga", "<cmd>Git add %<cr>")
+vim.keymap.set("n", "<leader>gc", function()
+    vim.cmd('Git commit -m ' .. vim.fn.input("Commit Message > "))
+end)

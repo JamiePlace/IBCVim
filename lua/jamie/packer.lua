@@ -45,6 +45,9 @@ return require('packer').startup(function(use)
     use('tell-k/vim-autopep8')
     use('CRAG666/code_runner.nvim')
     use('jiangmiao/auto-pairs')
+    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+
+    -- MASSIVE NEO TREE INSTALL
     -- Unless you are still migrating, remove the deprecated commands from v1.x
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
@@ -148,8 +151,8 @@ return require('packer').startup(function(use)
                         git_status = {
                             symbols = {
                                 -- Change type
-                                added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-                                modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+                                added     = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
+                                modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
                                 deleted   = "✖",-- this can only be used in the git_status source
                                 renamed   = "",-- this can only be used in the git_status source
                                 -- Status type
