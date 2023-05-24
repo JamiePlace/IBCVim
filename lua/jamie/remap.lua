@@ -34,4 +34,5 @@ vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
 vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
 vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 vim.keymap.set('t', "<Esc>", "<C-\\><C-n>")
-
+-- Code Runner
+vim.keymap.set('n', '<leader>rr', '<cmd>RunCode<cr>')
