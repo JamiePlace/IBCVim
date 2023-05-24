@@ -7,7 +7,7 @@ iron.setup {
     -- Your repl definitions come here
     repl_definition = {
         python = {
-            command = {os.getenv("VIRTUAL_ENV") .. "/Scripts/ipython.exe"}
+            command = {os.getenv("CONDA_PREFIX") .. "/Scripts/ipython3"}
         } 
     },
     -- How the repl window will be displayed
@@ -25,7 +25,7 @@ iron.setup {
     mark_motion = "<space>mc",
     mark_visual = "<space>mc",
     remove_mark = "<space>md",
-    cr = "<space>qq",
+    --cr = "<C-e>",
     interrupt = "<space>s<space>",
     exit = "<space>sq",
     clear = "<space>cl",
@@ -37,11 +37,4 @@ iron.setup {
   },
   ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
 }
-
--- iron also has a list of commands, see :h iron-commands for all available commands
-vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
-vim.keymap.set('t', "<Esc>", "<C-\\><C-n>")
 
