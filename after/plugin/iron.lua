@@ -1,5 +1,21 @@
 local iron = require("iron.core")
 
+-- determine where the ipython installation is
+-- this is different depending on the machine
+local homepath = os.getenv("HOMEPATH")
+
+if string.find(homepath, "u209454") then
+    print("Trane Computer")
+    python_env = os.getenv("VIRTAUL_ENV")
+else
+    print("Home Computer")
+    python_env = os.getenv("CONDA_PREFIX")
+end
+if python_env == nil then
+    python_env = '~'
+end
+
+
 iron.setup {
   config = {
     -- Whether a repl should be discarded or not
@@ -7,7 +23,7 @@ iron.setup {
     -- Your repl definitions come here
     repl_definition = {
         python = {
-            command = {os.getenv("CONDA_PREFIX") .. "/Scripts/ipython3"}
+            command = {python_env .. "/Scripts/ipython3"}
         } 
     },
     -- How the repl window will be displayed
