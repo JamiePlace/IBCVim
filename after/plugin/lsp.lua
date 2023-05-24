@@ -2,7 +2,8 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 lsp.ensure_installed({
-    'pylsp'
+    'pylsp',
+    'lua_ls'
 })
 -- Fix Undefined global 'vim'
 lsp.configure('lua-language-server', {
