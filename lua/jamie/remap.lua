@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", "<cmd>Neotree<CR>")
+-- paste and copy from clipboard
 vim.keymap.set("n", "<leader>pl", '"*p')
 vim.keymap.set("n", "<leader>yy", '"*y')
 -- vim.keymap.set('n', '<leader>sv', vim.cmd('source $MYVIMRC'))
