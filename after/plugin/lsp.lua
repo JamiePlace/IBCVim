@@ -2,7 +2,7 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 lsp.ensure_installed({
-    'pylsp',
+    'pyright',
     'lua_ls'
 })
 -- Fix Undefined global 'vim'
