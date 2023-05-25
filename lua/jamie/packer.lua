@@ -45,12 +45,12 @@ return require('packer').startup(function(use)
     use('tell-k/vim-autopep8')
     use('CRAG666/code_runner.nvim')
     use('jiangmiao/auto-pairs')
-    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-
+    use({'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'})
+    -- These optional plugins should be loaded directly because of a bug in Packer lazy loading
+    use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
+    use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
+    use 'romgrk/barbar.nvim'
     -- MASSIVE NEO TREE INSTALL
-    -- Unless you are still migrating, remove the deprecated commands from v1.x
-    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
@@ -98,7 +98,7 @@ return require('packer').startup(function(use)
             -- in the form "LspDiagnosticsSignWarning"
 
             require("neo-tree").setup({
-                close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+                close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
                 popup_border_style = "rounded",
                 enable_git_status = true,
                 enable_diagnostics = true,
@@ -315,7 +315,9 @@ return require('packer').startup(function(use)
         }
     })
 
-    vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+    vim.cmd([[nnoremap \ :Neotree reveal<cr>]])    
+    -- Unless you are still migrating, remove the deprecated commands from v1.x
+    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 end
 }
 end)

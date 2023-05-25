@@ -1,10 +1,19 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
+vim.keymap.set("n", "<leader>pv", "<cmd>Neotree<CR>")
+vim.keymap.set("n", "<leader>pl", '"*p')
+vim.keymap.set("n", "<leader>yy", '"*y')
 -- vim.keymap.set('n', '<leader>sv', vim.cmd('source $MYVIMRC'))
 vim.api.nvim_set_keymap("n", "<leader>rl", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
 
-vim.keymap.set('n', '<C-h>', function()
+vim.keymap.set('n', '<C-p>', function()
+    require('iron.core').send(nil, string.char(13))
+end)
+
+vim.keymap.set('v', '<C-p>', function()
+    require('iron.core').send(nil, string.char(13))
+end)
+
+vim.keymap.set('n', '<C-o>', function()
 
     local last_line = vim.fn.line('$')
     local pos = vim.api.nvim_win_get_cursor(0)
@@ -13,9 +22,8 @@ vim.keymap.set('n', '<C-h>', function()
     vim.notify("Sent line to repl!", vim.log.levels.INFO)
     vim.api.nvim_win_set_cursor(0, { math.min(pos[1] + 1, last_line), pos[2] })
 
-    require('iron.core').send(nil, string.char(13))
 end)
-vim.keymap.set('v', '<C-h>', function()
+vim.keymap.set('v', '<C-o>', function()
 
     local last_line = vim.fn.line('$')
     local pos = vim.api.nvim_win_get_cursor(0)
@@ -25,9 +33,10 @@ vim.keymap.set('v', '<C-h>', function()
     vim.api.nvim_win_set_cursor(0, { math.min(pos[1] + 1, last_line), pos[2] })
 
 end)
-vim.keymap.set('n', '<leader>pp', function()
-    require('iron.core').send(nil, string.char(13))
-end)
+
+vim.keymap.set('n', '<C-q>', "<C-o><C-p>")
+vim.keymap.set('v', '<C-q>', "<C-o><C-p>")
+
 -- iron also has a list of commands, see :h iron-commands for all available commands
 vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
 vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
