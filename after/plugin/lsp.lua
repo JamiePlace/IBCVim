@@ -2,7 +2,7 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 lsp.ensure_installed({
-    'pyright',
+    'pylsp',
     'lua_ls'
 })
 -- Fix Undefined global 'vim'
@@ -16,6 +16,21 @@ lsp.configure('lua-language-server', {
     }
 })
 
+lsp.configure('pylsp', {
+    settings = {
+        pylsp = {
+            plugins = {
+                ruff = {
+                    enabled = true,
+                    extendSelect = { "I" },
+                    lineLength = 79
+                },
+            }
+        }
+    },
+    root_dir = GIT_ROOT_DIR,
+    cmd = {PYTHON_ENV .. "/Scripts/pylsp.exe"}
+})
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}

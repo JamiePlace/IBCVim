@@ -12,3 +12,11 @@ vim.g.netrw_winsize = 25
 vim.g.python3_host_prog = PYTHON_ENV .. "/Scripts/python.exe"
 vim.g.python = PYTHON_ENV .. "/Scripts/python.exe"
 vim.g.python_style = 'numpy'
+
+GIT_ROOT_DIR = function()
+    return vim.fn.getcwd()
+end
+
+CURRENT_FILE_PATH = function()
+    return vim.api.nvim_buf_get_name(0)
+end
