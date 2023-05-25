@@ -51,7 +51,12 @@ return require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
     use 'romgrk/barbar.nvim'
     use('pixelneo/vim-python-docstring')
-
+    use({
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    })
     -- MASSIVE NEO TREE INSTALL
     use {
         "nvim-neo-tree/neo-tree.nvim",

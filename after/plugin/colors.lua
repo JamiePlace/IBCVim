@@ -1,7 +1,8 @@
 
 function ColorMyPencils(color)
 	color = color or "onedark"
-	vim.cmd.colorscheme(color)
+    -- Lua
+    vim.cmd[[colorscheme tokyonight-storm]]
 
 end
 
