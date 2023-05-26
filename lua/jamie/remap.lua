@@ -8,11 +8,16 @@ vim.keymap.set("v", "<leader>yy", '"*y')
 -- vim.keymap.set('n', '<leader>sv', vim.cmd('source $MYVIMRC'))
 vim.api.nvim_set_keymap("n", "<leader>rl", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
 
-vim.keymap.set('n', '<C-p>', function()
+vim.keymap.set('n', '<C-i>', function()
     require('iron.core').send(nil, string.char(13))
 end)
 
-vim.keymap.set('v', '<C-p>', function()
+vim.keymap.set('i', '<C-i>', function()
+    require('iron.core').send(nil, string.char(13))
+end)
+
+
+vim.keymap.set('v', '<C-i>', function()
     require('iron.core').send(nil, string.char(13))
 end)
 
@@ -37,8 +42,8 @@ vim.keymap.set('v', '<C-o>', function()
 
 end)
 
-vim.keymap.set('n', '<C-q>', "<C-o><C-p>")
-vim.keymap.set('v', '<C-q>', "<C-o><C-p>")
+vim.keymap.set('n', '<C-q>', "<C-o><C-i>")
+vim.keymap.set('v', '<C-q>', "<C-o><C-i>")
 
 -- iron also has a list of commands, see :h iron-commands for all available commands
 vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
@@ -48,3 +53,4 @@ vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 vim.keymap.set('t', "<Esc>", "<C-\\><C-n>")
 -- Code Runner
 vim.keymap.set('n', '<leader>rr', '<cmd>RunCode<cr>')
+vim.keymap.set("i", "<C-c>", "<Esc>")

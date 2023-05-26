@@ -57,6 +57,7 @@ return require('packer').startup(function(use)
         priority = 1000,
         opts = {},
     })
+    use({'folke/trouble.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'})
     -- MASSIVE NEO TREE INSTALL
     use {
         "nvim-neo-tree/neo-tree.nvim",

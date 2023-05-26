@@ -2,36 +2,12 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 lsp.ensure_installed({
-    'pylsp',
+    'pyright',
     'lua_ls'
 })
 -- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
-
-lsp.configure('pylsp', {
-    settings = {
-        pylsp = {
-            plugins = {
-                ruff = {
-                    enabled = true,
-                    extendSelect = { "I" },
-                    lineLength = 79
-                },
-            }
-        }
-    },
-    root_dir = GIT_ROOT_DIR,
-    cmd = {PYTHON_ENV .. "/Scripts/pylsp.exe"}
-})
-
+-- Fix Undefined global 'vim'
+lsp.nvim_workspace()
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -40,6 +16,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-y>'] = cmp.mapping.confirm({ select = true }),
   ["<C-Space>"] = cmp.mapping.complete(),
 })
+
+
+
 
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
@@ -81,8 +60,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.setup()
-
 vim.diagnostic.config({
     virtual_text = true
 })
+
+lsp.setup()
