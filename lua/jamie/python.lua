@@ -6,16 +6,18 @@ COMPUTER_LOCATION = '~'
 if string.find(homepath, "u209454") then
     print("Trane Computer")
     COMPUTER_LOCATION = 'Trane'
-    PYTHON_ENV = os.getenv("VIRTUAL_ENV"):gsub("\\", "/")
+    PYTHON_ENV = os.getenv("VIRTUAL_ENV")
     if PYTHON_ENV ~= nil then
-        PYTHON_ENV_NAME = string.match(PYTHON_ENV,".virtualenvs\\(.+)$")
+        PYTHON_ENV = gsub(PYTHON_ENV, "\\", "/")
+        PYTHON_ENV_NAME = string.match(PYTHON_ENV,".virtualenvs/(.+)$")
     end
 else
     print("Home Computer")
     COMPUTER_LOCATION = 'Home'
-    PYTHON_ENV = os.getenv("CONDA_PREFIX"):gsub("\\", "/")
+    PYTHON_ENV = os.getenv("CONDA_PREFIX")
     if PYTHON_ENV ~= nil then
-        PYTHON_ENV_NAME = string.match(PYTHON_ENV,"envs\\(.+)$")
+        PYTHON_ENV = gsub(PYTHON_ENV, "\\", "/")
+        PYTHON_ENV_NAME = string.match(PYTHON_ENV,"envs/(.+)$")
     end
     -- TODO find environment name from conda
 end
