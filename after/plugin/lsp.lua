@@ -9,23 +9,53 @@ lsp.ensure_installed({
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 local cmp = require('cmp')
+local luasnip = require('luasnip')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_snippet = {expand = function(args)
+    luasnip.lsp_expand(args.body)
+end}
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
+  ['<TAB>'] = cmp.mapping.confirm({ select = true }),
+  ['<CR>'] = cmp.mapping.close(),
+  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+  ['<C-d>'] = cmp.mapping.scroll_docs(4),
 })
+local cmp_sources = {
+  {name = 'path'},
+  {name = 'nvim_lsp', keyword_length = 1},
+  {name = 'buffer', keyword_length = 3},
+  {name = 'luasnip', keyword_length = 2},
+}
+local cmp_window = {documentation = cmp.config.window.bordered()}
+local cmp_formatting = {
+    fields = {'menu', 'abbr', 'kind'},
+    format = function(entry, item)
+        local menu_icon = {
+            nvim_lsp = 'λ',
+            luasnip = '⋗',
+            buffer = 'Ω',
+            path = '🖫',
+        }
 
-
-
-
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
+        item.menu = menu_icon[entry.source.name]
+        return item
+    end,
+}
+--cmp_mappings['<Tab>'] = nil
+--cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp_mappings,
+  formatting = cmp_formatting,
+  sources = cmp_sources,
+  window = cmp_window,
+  snippet = cmp_snippet
 })
+
+
+
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
