@@ -1,14 +1,22 @@
 
 -- determine where the ipython installation is
 -- this is different depending on the machine
-local homepath = os.getenv("HOMEPATH"):gsub("\\", "/")
+local homepath = function()
+    path = os.getenv("HOMEPATH")
+    if path == nil then
+        return os.getenv("HOME")
+    end
+    path = path:gsub("\\", "/")
+
+    return path
+end
 COMPUTER_LOCATION = '~'
-if string.find(homepath, "u209454") then
+if string.find(homepath(), "u209454") then
     print("Trane Computer")
     COMPUTER_LOCATION = 'Trane'
     PYTHON_ENV = os.getenv("VIRTUAL_ENV")
     if PYTHON_ENV ~= nil then
-        PYTHON_ENV = gsub(PYTHON_ENV, "\\", "/")
+        PYTHON_ENV = PYTHON_ENV:gsub("\\", "/")
         PYTHON_ENV_NAME = string.match(PYTHON_ENV,".virtualenvs/(.+)$")
     end
 else
@@ -16,7 +24,7 @@ else
     COMPUTER_LOCATION = 'Home'
     PYTHON_ENV = os.getenv("CONDA_PREFIX")
     if PYTHON_ENV ~= nil then
-        PYTHON_ENV = gsub(PYTHON_ENV, "\\", "/")
+        PYTHON_ENV = PYTHON_ENV:gsub("\\", "/")
         PYTHON_ENV_NAME = string.match(PYTHON_ENV,"envs/(.+)$")
     end
     -- TODO find environment name from conda
