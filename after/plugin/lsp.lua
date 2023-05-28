@@ -71,8 +71,8 @@ lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
   vim.keymap.set("n", "gd", function() 
-      vim.cmd('split')
-      vim.cmd('wincmd j')
+      vim.cmd('belowright split')
+      --vim.cmd('wincmd j')
       vim.lsp.buf.definition() 
       --vim.cmd('wincmd k')
       --vim.cmd('wincmd H')
