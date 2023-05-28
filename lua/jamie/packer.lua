@@ -58,6 +58,8 @@ return require('packer').startup(function(use)
         opts = {},
     })
     use({'folke/trouble.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'})
+    -- install without yarn or npm
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
     -- MASSIVE NEO TREE INSTALL
     use {
         "nvim-neo-tree/neo-tree.nvim",
@@ -238,10 +240,10 @@ return require('packer').startup(function(use)
                             nesting_rules = {},
                             filesystem = {
                                 filtered_items = {
-                                    visible = false, -- when true, they will just be displayed differently than normal items
+                                    visible = true, -- when true, they will just be displayed differently than normal items
                                     hide_dotfiles = true,
-                                    hide_gitignored = true,
-                                    hide_hidden = true, -- only works on Windows for hidden files/directories
+                                    hide_gitignored = false,
+                                    hide_hidden = false, -- only works on Windows for hidden files/directories
                                     hide_by_name = {
                                         --"node_modules"
                                     },
