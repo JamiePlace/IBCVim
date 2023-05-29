@@ -57,6 +57,7 @@ return require('packer').startup(function(use)
         priority = 1000,
         opts = {},
     })
+    use({ "catppuccin/nvim", as = "catppuccin" })
     use({'folke/trouble.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'})
     -- install without yarn or npm
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
