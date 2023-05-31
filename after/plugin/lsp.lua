@@ -3,6 +3,7 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 lsp.ensure_installed({
     'pyright',
+    'pylsp',
     'lua_ls'
 })
 -- Fix Undefined global 'vim'
@@ -54,9 +55,6 @@ lsp.setup_nvim_cmp({
   snippet = cmp_snippet
 })
 
-
-
-
 lsp.set_preferences({
     suggest_lsp_servers = false,
     sign_icons = {
@@ -93,5 +91,22 @@ end)
 vim.diagnostic.config({
     virtual_text = true
 })
-
+require('lspconfig').pylsp.setup {
+    on_attach = on_attach,
+    settings = {
+        -- configure plugins in pylsp
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = {'W391'},
+                    maxLineLength = 79
+                },
+                pyflakes = {enabled = false},
+                pylint = {enabled = false},
+                flake8 = { enabled = false},
+                pylint = {enable = true}
+            },
+        },
+    },
+}
 lsp.setup()
