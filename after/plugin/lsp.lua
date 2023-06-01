@@ -44,8 +44,8 @@ local cmp_formatting = {
         return item
     end,
 }
---cmp_mappings['<Tab>'] = nil
---cmp_mappings['<S-Tab>'] = nil
+cmp_mappings['<Tab>'] = nil
+cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
@@ -108,5 +108,12 @@ require('lspconfig').pylsp.setup {
             },
         },
     },
+}
+require'lspconfig'.pyright.setup{
+    settings = {
+        root_dir = {
+            GIT_ROOT_DIR        
+        }
+    }
 }
 lsp.setup()
