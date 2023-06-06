@@ -70,12 +70,10 @@ lsp.on_attach(function(client, bufnr)
 
   vim.keymap.set("n", "gd", function() 
       vim.cmd('belowright split')
-      --vim.cmd('wincmd j')
       vim.lsp.buf.definition() 
-      --vim.cmd('wincmd k')
-      --vim.cmd('wincmd H')
-      --vim.cmd('wincmd l')
-      --vim.lsp.buf.definition() 
+  end, opts)
+  vim.keymap.set("n", "<leader>gd", function() 
+      vim.lsp.buf.definition() 
   end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
@@ -110,6 +108,7 @@ require('lspconfig').pylsp.setup {
     },
 }
 require'lspconfig'.pyright.setup{
+    on_attach = on_attach,
     settings = {
         root_dir = {
             GIT_ROOT_DIR        
