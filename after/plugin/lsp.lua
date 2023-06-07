@@ -102,7 +102,7 @@ require('lspconfig').pylsp.setup {
                 pyflakes = {enabled = false},
                 pylint = {enabled = false},
                 flake8 = { enabled = false},
-                pylint = {enable = true}
+                pylint = {enable = false}
             },
         },
     },
