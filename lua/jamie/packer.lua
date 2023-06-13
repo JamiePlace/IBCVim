@@ -78,4 +78,5 @@ return require('packer').startup(function(use)
             }
         }
     }
+    use 'chrisbra/csv.vim'
 end)
