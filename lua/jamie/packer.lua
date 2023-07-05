@@ -78,5 +78,6 @@ return require('packer').startup(function(use)
             }
         }
     }
+    use 'github/copilot.vim'
     use 'chrisbra/csv.vim'
 end)

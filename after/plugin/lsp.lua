@@ -89,30 +89,33 @@ end)
 vim.diagnostic.config({
     virtual_text = true
 })
+require'lspconfig'.pyright.setup{
+    on_attach = on_attach,
+    settings = {
+        root_dir = {
+            GIT_ROOT_DIR
+        },
+        pyright = {autoImportCompletion = true,},
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'openFilesOnly',
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = 'off'
+            }
+        }
+    }
+}
 require('lspconfig').pylsp.setup {
     on_attach = on_attach,
     settings = {
         -- configure plugins in pylsp
         pylsp = {
             plugins = {
-                pycodestyle = {
-                    ignore = {'W391'},
-                    maxLineLength = 79
-                },
-                pyflakes = {enabled = false},
-                pylint = {enabled = false},
-                flake8 = { enabled = false},
-                pylint = {enable = false}
+                autopep8 = {enabled=false},
+                pyflakes = {enabled=false},
             },
         },
     },
-}
-require'lspconfig'.pyright.setup{
-    on_attach = on_attach,
-    settings = {
-        root_dir = {
-            GIT_ROOT_DIR        
-        }
-    }
 }
 lsp.setup()
