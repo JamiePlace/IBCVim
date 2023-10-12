@@ -34,7 +34,7 @@ if PYTHON_ENV == nil then
     PYTHON_ENV_NAME = '~'
 end
 
-if COMPUTER_LOCATION == 'Trane' then 
+if COMPUTER_LOCATION == 'Trane' then
     vim.g.python3_host_prog = PYTHON_ENV .. "/Scripts/python.exe"
     vim.g.python = PYTHON_ENV .. "/Scripts/python.exe"
 else
