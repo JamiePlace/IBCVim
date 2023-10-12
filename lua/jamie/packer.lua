@@ -80,4 +80,5 @@ return require('packer').startup(function(use)
     }
     use 'github/copilot.vim'
     use 'chrisbra/csv.vim'
+    use 'tpope/vim-commentary'
 end)
