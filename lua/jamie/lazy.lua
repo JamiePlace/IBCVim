@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-	-- background
+	-- theme
 	{"ellisonleao/gruvbox.nvim",
 		as="gruvbox"
 	},
@@ -49,6 +49,7 @@ require("lazy").setup({
 	},
 	-- lsp
 	{ "neovim/nvim-lspconfig" },
+	{ "williamboman/mason.nvim" },
 	-- fugitive "git"
 	{"tpope/vim-fugitive"},
 	-- telescope "fuzzy finder"
@@ -57,25 +58,6 @@ require("lazy").setup({
 		-- or                              , branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
-	-- python virtual env selector
-	{
-		'linux-cultist/venv-selector.nvim',
-		dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
-		opts = {
-			-- Your options go here
-			name = {"venv", ".venv"},
-			-- auto_refresh = false
-		},
-		event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
-		keys = {
-			-- Keymap to open VenvSelector to pick a venv.
-			{ '<leader>vs', '<cmd>VenvSelect<cr>' },
-			-- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-			{ '<leader>vc', '<cmd>VenvSelectCached<cr>' },
-		},
-	},
-	-- black formatter
-	{"averms/black-nvim"},
 })
 
 

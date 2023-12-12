@@ -97,3 +97,5 @@ require"lspconfig".pyright.setup{
 		]],
 	},
 }
+
+vim.g.python3_host_prog = set_python_path(1)
