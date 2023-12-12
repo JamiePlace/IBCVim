@@ -12,9 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- theme
-	{"ellisonleao/gruvbox.nvim",
-		as="gruvbox"
-	},
+	{"ellisonleao/gruvbox.nvim" },
 	-- treesitter
 	{"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -24,11 +22,11 @@ require("lazy").setup({
 			configs.setup({
 				ensure_installed = {  "lua", "vim", "python", "r", "rust" },
 				sync_install = false,
-				highlight = { enable = true },
-				indent = { enable = true },  
+			highlight = { enable = true , additional_vim_regex_highlighting = false},
 			})
 		end
 	},
+	{"nvim-treesitter/nvim-treesitter-context"};
 	-- neotree
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -48,7 +46,27 @@ require("lazy").setup({
 		end
 	},
 	-- lsp
-	{ "neovim/nvim-lspconfig" },
+	{'VonHeikemen/lsp-zero.nvim',
+	  branch = 'v1.x',
+	  dependencies = {
+		  -- LSP Support
+		  {'neovim/nvim-lspconfig'},
+		  {'williamboman/mason.nvim'},
+		  {'williamboman/mason-lspconfig.nvim'},
+
+		  -- Autocompletion
+		  {'hrsh7th/nvim-cmp'},
+		  {'hrsh7th/cmp-buffer'},
+		  {'hrsh7th/cmp-path'},
+		  {'saadparwaiz1/cmp_luasnip'},
+		  {'hrsh7th/cmp-nvim-lsp'},
+		  {'hrsh7th/cmp-nvim-lua'},
+
+		  -- Snippets
+		  {'L3MON4D3/LuaSnip'},
+		  {'rafamadriz/friendly-snippets'},
+	  }
+	},
 	{ "williamboman/mason.nvim" },
 	-- fugitive "git"
 	{"tpope/vim-fugitive"},
@@ -58,6 +76,14 @@ require("lazy").setup({
 		-- or                              , branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
+	-- autopairs
+	{
+		"windwp/nvim-autopairs", event="InsertEnter", opts = {},
+		config = function()
+			require('nvim-autopairs').setup({ })
+		end
+	},
+	{"github/copilot.vim"},
 })
 
 
