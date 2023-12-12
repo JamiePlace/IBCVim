@@ -12,8 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- background
-	{"rose-pine/neovim",
-		as="rose-pine"
+	{"ellisonleao/gruvbox.nvim",
+		as="gruvbox"
 	},
 	-- treesitter
 	{"nvim-treesitter/nvim-treesitter",
