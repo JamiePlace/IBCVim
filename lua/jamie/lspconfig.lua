@@ -10,7 +10,6 @@ lsp.ensure_installed({
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 
-
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -65,10 +64,9 @@ require('lspconfig').pylsp.setup({
 				autopep8 = {enabled = false},
 				yapf = {enabled = false},
 				-- linter
-				pylint = { enabled = false },
+				pylint = { enabled = true },
 				pyflakes = { enabled = false },
 				pycodestyle = { enabled = false },
-				ruff = { enabled = true, executable = 'ruff check'},
 				-- type checker
 				pylsp_mypy = { enabled = true },
 				-- auto-completion options
@@ -79,7 +77,69 @@ require('lspconfig').pylsp.setup({
 		}
 	}
 })
-
+-- pyright
+--local util = require 'lspconfig.util'
+--
+--local root_files = {
+--  'pyproject.toml',
+--  'setup.py',
+--  'setup.cfg',
+--  'requirements.txt',
+--  'Pipfile',
+--  'pyrightconfig.json',
+--  '.git',
+--}
+--
+--local function organize_imports()
+--  local params = {
+--    command = 'pyright.organizeimports',
+--    arguments = { vim.uri_from_bufnr(0) },
+--  }
+--  vim.lsp.buf.execute_command(params)
+--end
+--
+--local function set_python_path(path)
+--  local clients = vim.lsp.get_active_clients {
+--    bufnr = vim.api.nvim_get_current_buf(),
+--    name = 'pyright',
+--  }
+--  for _, client in ipairs(clients) do
+--    client.config.settings = vim.tbl_deep_extend('force', client.config.settings, { python = { pythonPath = path } })
+--    client.notify('workspace/didChangeConfiguration', { settings = nil })
+--  end
+--end
+--require('lspconfig').pyright.setup({
+--	on_attach = function(client, bufnr)
+--		print('pyright attached')
+--	end,
+--    cmd = { 'pyright-langserver', '--stdio' },
+--    filetypes = { 'python' },
+--    root_dir = function(fname)
+--      return util.root_pattern(unpack(root_files))(fname)
+--    end,
+--    single_file_support = true,
+--    settings = {
+--          python = {
+--            analysis = {
+--              autoSearchPaths = true,
+--              useLibraryCodeForTypes = true,
+--              diagnosticMode = 'openFilesOnly',
+--            },
+--          },
+--        },
+--    commands = {
+--        PyrightOrganizeImports = {
+--          organize_imports,
+--          description = 'Organize Imports',
+--        },
+--        PyrightSetPythonPath = {
+--          set_python_path,
+--          description = 'Reconfigure pyright with the provided python path',
+--          nargs = 1,
+--          complete = 'file',
+--        },
+--    }
+--})
 lsp.setup()
 
 vim.diagnostic.config({
